@@ -3,10 +3,7 @@ import React from 'react'
 const CompletedTasks = ({ tasks }) => {
     return (
         <>
-            {
-                tasks.map((task) => 
-                <div>{task.text}</div>
-            )}
+            {tasks.map((task) => task.reminder && <div>{task.text}</div>) }
         </>
     )
 }
