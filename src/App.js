@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Header from './components/Header'
 import Tasks from './components/Tasks'
 import AddTask from './components/AddTask'
+import CompletedTasks from './components/CompletedTasks'
 
 
 
@@ -16,7 +17,7 @@ function App() {
     },
     {
         id:2,
-        text: 'Meeting at School',
+        text: 'Haircut',
         day: 'Feb 6th at 1:30pm',
         reminder: true
     },
@@ -61,6 +62,7 @@ function App() {
         ) : ( 
           'No Tasks To Show'
           )}
+        <CompletedTasks tasks={tasks}/>
     </div>
   );
 }
