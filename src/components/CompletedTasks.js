@@ -1,9 +1,11 @@
-import React from 'react'
+import Task from './Task'
+
 
 const CompletedTasks = ({ tasks }) => {
     return (
         <>
-            {tasks.map((task) => task.reminder && <div>{task.text}</div>) }
+            <h3>Completed Tasks</h3>
+            {tasks.map((task) => task.reminder && (<Task task={task}/>)) }
         </>
     )
 }
