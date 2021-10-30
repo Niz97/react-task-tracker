@@ -51,14 +51,20 @@ function App() {
     )
   }
   return (
-    <div className='container'>
-      <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask}/>
+    <div className='container grid'>
+      <div className='grid-item'>
+        <h3>Add Task </h3>
+        <AddTask onAdd={addTask}/>
+      </div>
 
-      { showAddTask && <AddTask onAdd={addTask}/>}
+      <div className='grid-item'>
+        <IncompleteTasks tasks={tasks} onDelete={deleteTask} onToggle={toggleCompleted}/>
+      </div>
 
-      <IncompleteTasks tasks={tasks} onDelete={deleteTask} onToggle={toggleCompleted}/>
-        
-      <CompletedTasks tasks={tasks} onDelete={deleteTask} onToggle={toggleCompleted}/>
+      <div className='grid-item'>
+        <CompletedTasks tasks={tasks} onDelete={deleteTask} onToggle={toggleCompleted}/>
+      </div>
+
     </div>
   );
 }
