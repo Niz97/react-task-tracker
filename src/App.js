@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Header from './components/Header'
-import Tasks from './components/Tasks'
+import IncompleteTasks from './components/IncompleteTasks'
 import AddTask from './components/AddTask'
 import CompletedTasks from './components/CompletedTasks'
 
@@ -56,7 +56,7 @@ function App() {
         <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask}/>
         { showAddTask && <AddTask onAdd={addTask}/>}
         {tasks.length > 0 ?( 
-          <Tasks 
+          <IncompleteTasks 
             tasks={tasks} 
             onDelete={deleteTask}
             onToggle={toggleReminder}/>
