@@ -43,7 +43,7 @@ function App() {
   }
 
   // Toggle Reminder
-  const toggleReminder = (id) => {
+  const toggleCompleted = (id) => {
     setTasks(tasks.map((task) => 
       task.id === id ? { ...task, completed: !task.completed } 
       : task
@@ -54,18 +54,12 @@ function App() {
     <div className='container'>
       <div>
         <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask}/>
+
         { showAddTask && <AddTask onAdd={addTask}/>}
-        {tasks.length > 0 ?( 
-          <IncompleteTasks 
-            tasks={tasks} 
-            onDelete={deleteTask}
-            onToggle={toggleReminder}/>
-          ) : ( 
-            'No Tasks To Show'
-            )}
-          <CompletedTasks tasks={tasks} 
-            onDelete={deleteTask}
-            onToggle={toggleReminder}/>
+
+          <IncompleteTasks tasks={tasks} onDelete={deleteTask} onToggle={toggleCompleted}/>
+            
+          <CompletedTasks tasks={tasks} onDelete={deleteTask} onToggle={toggleCompleted}/>
       </div>
     </div>
   );
