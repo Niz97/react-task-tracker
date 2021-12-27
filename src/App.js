@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import Header from './components/Header'
-import Tasks from './components/Tasks'
+import IncompleteTasks from './components/IncompleteTasks'
 import AddTask from './components/AddTask'
+import CompletedTasks from './components/CompletedTasks'
 
 
 
@@ -12,19 +13,19 @@ function App() {
         id:1,
         text: 'Doctors Appointment',
         day: 'Feb 5th at 2:30pm',
-        reminder: true
+        completed: true
     },
     {
         id:2,
-        text: 'Meeting at School',
+        text: 'Haircut',
         day: 'Feb 6th at 1:30pm',
-        reminder: true
+        completed: true
     },
     {
         id:3,
         text: 'Food Shopping',
         day: 'Feb 5th at 2:30pm',
-        reminder: false
+        completed: false
     },
   ])
 
@@ -42,9 +43,9 @@ function App() {
   }
 
   // Toggle Reminder
-  const toggleReminder = (id) => {
+  const toggleCompleted = (id) => {
     setTasks(tasks.map((task) => 
-      task.id === id ? { ...task, reminder: !task.reminder } 
+      task.id === id ? { ...task, completed: !task.completed } 
       : task
       )
     )
@@ -52,15 +53,12 @@ function App() {
   return (
     <div className='container'>
       <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask}/>
+
       { showAddTask && <AddTask onAdd={addTask}/>}
-      {tasks.length > 0 ?( 
-        <Tasks 
-          tasks={tasks} 
-          onDelete={deleteTask}
-          onToggle={toggleReminder}/>
-        ) : ( 
-          'No Tasks To Show'
-          )}
+
+      <IncompleteTasks tasks={tasks} onDelete={deleteTask} onToggle={toggleCompleted}/>
+        
+      <CompletedTasks tasks={tasks} onDelete={deleteTask} onToggle={toggleCompleted}/>
     </div>
   );
 }
